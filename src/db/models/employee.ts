@@ -5,6 +5,8 @@ import {
   AllowNull,
   CreatedAt,
   UpdatedAt,
+  IsUUID,
+  PrimaryKey,
 } from "sequelize-typescript";
 
 @Table({
@@ -13,6 +15,8 @@ import {
 })
 export default class Employee extends Model<Employee> {
   @AllowNull(false)
+  @IsUUID(4)
+  @PrimaryKey
   @Column
   id: string;
 

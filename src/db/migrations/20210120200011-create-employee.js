@@ -4,7 +4,6 @@ module.exports = {
     return queryInterface.createTable("Employees", {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.UUID,
       },
@@ -18,11 +17,11 @@ module.exports = {
       },
       age: {
         allowNull: false,
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
       },
       phoneNumber: {
         allowNull: false,
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
       },
       dealershipId: {
         allowNull: false,

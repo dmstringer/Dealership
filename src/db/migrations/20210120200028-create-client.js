@@ -4,7 +4,6 @@ module.exports = {
     return queryInterface.createTable("Clients", {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.UUID,
       },
@@ -18,7 +17,7 @@ module.exports = {
       },
       phoneNumber: {
         allowNull: false,
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
       },
       lookingForNewCar: {
         allowNull: false,

@@ -4,7 +4,6 @@ module.exports = {
     return queryInterface.createTable("Cars", {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.UUID,
       },
@@ -14,7 +13,7 @@ module.exports = {
       },
       doors: {
         allowNull: false,
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
       },
       automatic: {
         allowNull: false,
@@ -26,11 +25,11 @@ module.exports = {
       },
       price: {
         allowNull: false,
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
       },
       miles: {
         allowNull: false,
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
       },
       dealershipId: {
         allowNull: false,

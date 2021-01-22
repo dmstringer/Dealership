@@ -7,8 +7,8 @@ import { v4 as uuidv4 } from "uuid";
 export default class {
   
   @Mutation(() => Dealership)
-  createDealership(@Arg("name") name:string, @Arg("location") location:string, @Arg("phoneNumber") phoneNumber:number) {
-    return DealershipModel.create({ id: uuidv4(), name, location, phoneNumber });
+  createDealership(@Arg("model") model: DealershipInput) {
+    return DealershipModel.create({ ...model, id: uuidv4() });
   }
 
   @Mutation(() => Dealership)
@@ -30,6 +30,8 @@ export default class {
     await DealershipModel.upsert({
       id: model.id,
       name: model.name === undefined ? existingDealership.name : model.name,
+      location: model.location === undefined ? existingDealership.location : model.location,
+      phoneNumber: model.phoneNumber === undefined ? existingDealership.phoneNumber : model.phoneNumber,
     });
     return DealershipModel.findByPk(model.id);
   }
@@ -51,7 +53,7 @@ export default class {
   }
 
   @Query(() => Dealership)
-  getDealershipWhere(@Arg("location") id: string) {
-    return DealershipModel.findOne({ where: {location:"Some Location"} });
+  getDealershipWhere(@Arg("location") location: string) {
+    return DealershipModel.findOne({ where: {location: location} });
   }
 }

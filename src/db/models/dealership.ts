@@ -2,9 +2,11 @@ import {
   Table,
   Column,
   Model,
+  PrimaryKey,
   AllowNull,
   CreatedAt,
   UpdatedAt,
+  IsUUID,
 } from "sequelize-typescript";
 
 @Table({
@@ -13,6 +15,8 @@ import {
 })
 export default class Dealership extends Model<Dealership> {
   @AllowNull(false)
+  @IsUUID(4)
+  @PrimaryKey
   @Column
   id: string;
 

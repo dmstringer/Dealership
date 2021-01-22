@@ -12,10 +12,10 @@ export default class Dealership {
 
 @InputType()
 export class DealershipInput {
-  @Field() id?: string;
-  @Field() name: string;
-  @Field() location: string;
-  @Field() phoneNumber: number;
-  @Field() updatedAt?: Date
-  @Field() createdAt?: Date
+  @Field({ nullable: true }) id?: string;
+  @Field({ nullable: true }) name: string;
+  @Field({ nullable: true }) location: string;
+  @Field({ nullable: true }) phoneNumber: number;
+  @Field({ nullable: true }) updatedAt?: Date
+  @Field({ nullable: true }) createdAt?: Date
 }

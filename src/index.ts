@@ -1,13 +1,15 @@
-require("dotenv").config();
+import * as dotenv from "dotenv";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import "reflect-metadata";
 import { buildSchema } from "type-graphql";
-import resolvers from "./graphql/resolvers";
+import resolvers from "graphql/resolvers";
 import cors from "cors";
 import { createServer } from "http";
 import cookieParser from "cookie-parser";
-import sequelize from "./db/sequelize";
+import sequelize from "db/sequelize";
+
+dotenv.config();
 
 const startServer = async () => {
   const schema = await buildSchema({

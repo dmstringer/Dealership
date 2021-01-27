@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Query, Resolver, Arg, Mutation } from "type-graphql";
-import Car, { CarInput } from "../schemas/car";
-import CarModel from "../../db/models/car";
+import Car, { CarInput } from "graphql/schemas/car";
+import CarModel from "db/models/car";
 import { v4 as uuidv4 } from "uuid";
 import { Op } from "sequelize";
 
@@ -36,8 +37,11 @@ export default class {
 
   @Mutation(() => Boolean)
   async deleteCar(@Arg("id") id: string) {
-    const deleted = await CarModel.destroy({ where: { id } });
-    return deleted ? true : false;
+    try {
+      return await CarModel.destroy({ where: { id } });
+    } catch (error) {
+      return error;
+    }
   }
 
   @Query(() => [Car])

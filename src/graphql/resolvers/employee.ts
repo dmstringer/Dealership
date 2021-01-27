@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Query, Resolver, Arg, Mutation } from "type-graphql";
-import Employee, { EmployeeInput } from "../schemas/employee";
-import EmployeeModel from "../../db/models/employee";
-import CarModel from "../../db/models/car";
+import Employee, { EmployeeInput } from "graphql/schemas/employee";
+import EmployeeModel from "db/models/employee";
+import CarModel from "db/models/car";
 import { v4 as uuidv4 } from "uuid";
 
 @Resolver((of) => Employee)
@@ -40,8 +41,11 @@ export default class {
 
   @Mutation(() => Boolean)
   async deleteEmployee(@Arg("id") id: string) {
-    const deleted = await EmployeeModel.destroy({ where: { id } });
-    return deleted ? true : false;
+    try {
+      return await EmployeeModel.destroy({ where: { id } });
+    } catch (error) {
+      return error;
+    }
   }
 
   @Query(() => [Employee])
